@@ -11,9 +11,14 @@ app.get('/',(req,res)=>{
 });
 
 app.get('/pokemons', async (req,res)=>{
+
+    // cuantos poquemones quieres
+
+    const limite = req.query.cantidad;
     
     try {
-        const respuesta = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100&offset=0');
+        const respuesta = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limite}&offset=0`);
+        
         const datos = await respuesta.json();
         res.json(datos);
     } catch (error) {
